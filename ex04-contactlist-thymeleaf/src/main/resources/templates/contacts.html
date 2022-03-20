@@ -11,7 +11,59 @@
     </header>
     <main>
         <h1>Contacts</h1>
-        <p><em>TODO</em></p>
+
+        <span th:if="${#response.status == 404}">
+            <strong>Contact Not Available</strong>
+        </span>
+
+
+        <div th:if="${contact != null}">
+            <table>
+                <tr>
+                    <th>Attribut</th>
+                    <th>Wert</th>
+                </tr>
+                <tr>
+                    <td>First name: </td>
+                    <td th:text="${contact.firstName}">Max</td>
+                </tr>
+                <tr>
+                    <td>Last name: </td>
+                    <td th:text="${contact.lastName}">Mustermann</td>
+                </tr>
+
+                <tr th:replace="fragments::multirow('Email', ${contact.email})"></tr>
+                <tr th:replace="fragments::multirow('Phone', ${contact.phone})"></tr>
+
+                <tr>
+
+                    <div th:if="${contact.jobTitle != null}">
+                        <td>job title: </td>
+                        <td th:text="${contact.jobTitle}">Unsecure Worker</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div th:if="${contact.company != null}">
+                        <td>Company: </td>
+                        <td th:text="${contact.company}">Apple is a joke</td>
+                    </div>
+                </tr>
+            </table>
+        </div>
+
+        <ol>
+            <li th:each="entry : ${contactList}">
+
+                <div th:if="${entry.id} != ${id}">
+                    <a th:text="${entry.name}"
+                       th:href="@{/contacts/{id}(id=${entry.id})}">First Contact</a>
+                </div>
+                <div th:if="${entry.id} == ${id}">
+                    <a th:text="${entry.name}"
+                       th:href="@{/contacts/{id}(id=${entry.id})}" class="active">First Contact</a>
+                </div>
+            </li>
+        </ol>
     </main>
     <footer>
         built with <a href="https://spring.io/">Spring</a>

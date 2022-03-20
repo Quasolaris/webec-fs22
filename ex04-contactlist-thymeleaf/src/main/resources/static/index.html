@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="html(title,content)">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <title>Contacts</title>
+</head>
+<p>Test</p>
+<div id="container">
+<div th:fragment="page::layout(${contactList})"></div>
+</div>
+</html>

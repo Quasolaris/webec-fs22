@@ -1,0 +1,13 @@
+<tr th:fragment="multirow(attribute, list)">
+    <div th:unless="${list.isEmpty}">
+        <td th:text="${attribute}">Email</td>
+        <td>
+            <ul>
+                <li th:each="entry : ${list}"
+                    th:text="${entry}">
+                    bla@ecample.com
+                </li>
+            </ul>
+        </td>
+    </div>
+</tr>

@@ -1,0 +1,16 @@
+<div th:fragment="layout(contactList)">
+    <header>
+        <h1>Contact List</h1>
+    </header>
+    <main>
+        <ol>
+            <li th:each="entry : ${contactList}">
+                    <a th:text="${entry.name}"
+                       th:href="@{/contacts/{id}(id=${entry.id})}" class="active">First Contact</a>
+            </li>
+        </ol>
+    </main>
+    <footer>
+        built with <a href="https://spring.io/">Spring</a>
+    </footer>
+</div>
